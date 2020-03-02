@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/css/main.css">
+    <title>Lacy Dog Directory</title>
+  </head>
+  <body>
+    <header class="row">
+      <h1 class="one-third column">Lacy Dog Directory</h1>
+      <a href="/registry/new">Add New Item</a>
+    </header>
+    <hr>
+    <div class="container">
+      <table class="table table-bordered table-hover">
+        <tbody class="item">
+
+          <%for (let i = 0; i < registry.length; i++) { %>
+            <tr>
+              <thead>
+                <tr>
+                <th>Name</th>
+                <th>Color</th>
+                <th>Sex</th>
+                <th>Kennel</th>
+                </tr>
+              </thead>
+              <tr>
+            <td>
+              <a href="/registry/<%=registry[i].id%>"><%=registry[i].name%></a>
+            </td>
+            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].color%></a></td>
+            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].sex%></a></td>
+            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].kennel%></a></td>
+            <td><a href="/registry/<%=registry[i].id%>/edit/">Edit </a></td>
+            <td><form action="/registry/<%=registry[i].id%>?_method=DELETE" method="post">
+            <input type="submit" value="DELETE"/>
+            </tr>
+            <%  } %>
+        </tbody>
+      </table>
+      
+    </div>
+
+
+
+
+  </body>
+</html>

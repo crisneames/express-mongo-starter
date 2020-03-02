@@ -6,6 +6,11 @@ const methodOverride  = require('method-override');
 const mongoose = require ('mongoose');
 const app = express ();
 const db = mongoose.connection;
+const bcrypt = require('bcrypt');
+const Registry = require('./models/registry.js');
+const registryController = require('./controllers/registry.js');
+app.use("/registry", registryController)
+
 //___________________
 //Port
 //___________________
@@ -33,6 +38,7 @@ db.on('open' , ()=>{});
 //___________________
 //Middleware
 //___________________
+
 
 //use public folder for static assets
 app.use(express.static('public'));

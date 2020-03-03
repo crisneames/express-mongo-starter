@@ -8,16 +8,13 @@
     <title>Lacy Dog Directory</title>
   </head>
   <body>
-    <header class="row">
-      <h1 class="one-third column">Lacy Dog Directory</h1>
-      <a href="/registry/new">Add New Item</a>
-    </header>
+    <header>
+<%- include ('./partials/head.ejs') %>
+</header>
     <hr>
     <div class="container">
       <table class="table table-bordered table-hover">
         <tbody class="item">
-
-          <%for (let i = 0; i < registry.length; i++) { %>
             <tr>
               <thead>
                 <tr>
@@ -25,27 +22,39 @@
                 <th>Color</th>
                 <th>Sex</th>
                 <th>Kennel</th>
+                <th>Birthdate</th>
                 </tr>
               </thead>
               <tr>
+                <%for (let i = 0; i < registry.length; i++) { %>
             <td>
               <a href="/registry/<%=registry[i].id%>"><%=registry[i].name%></a>
             </td>
-            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].color%></a></td>
-            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].sex%></a></td>
-            <td><a href="/registry/<%=registry[i].id%>"><%=registry[i].kennel%></a></td>
-            <td><a href="/registry/<%=registry[i].id%>/edit/">Edit </a></td>
-            <td><form action="/registry/<%=registry[i].id%>?_method=DELETE" method="post">
+            <td>
+              <a href="/registry/<%=registry[i].id%>"><%=registry[i].color%></a>
+            </td>
+            <td>
+              <a href="/registry/<%=registry[i].id%>"><%=registry[i].sex%></a>
+            </td>
+            <td>
+              <a href="/registry/<%=registry[i].id%>"><%=registry[i].kennel%></a>
+            </td>
+            <td>
+              <a href="/registry/<%=registry[i].id%>"><%=registry[i].birthdate%></a>
+            </td>
+            <td>
+              <a href="/registry/<%=registry[i].id%>/edit?_method=PUT">Edit </a>
+            </td>
+            <td>
+              <form action="/registry/<%=registry[i].id%>?_method=DELETE" method="POST">
             <input type="submit" value="DELETE"/>
             </tr>
             <%  } %>
         </tbody>
       </table>
-      
+      <nav class="nav-item">
+        <a class="nav-link" href="/registry/new" tabindex="-1" aria-disabled="true">Add New Item</a>
+      </nav>
     </div>
-
-
-
-
   </body>
 </html>

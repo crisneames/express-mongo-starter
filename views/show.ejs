@@ -6,16 +6,49 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Lacy Dog Directory</title>
   </head>
-  <body
-  <h1><%=registry.name; %>'s Page</h1>
-    <table>
-      <tr>
-        <td><%=registry.name%></td>
-        <td><%=registry.color%></td>
-        <td><%=registry.sex%></td>
-        <td><%=registry.kennel%></td>
-      </tr>
+  <body>
+    <%- include ('./partials/head.ejs') %>
+    <hr>
+  <div>
+  <h4><%=registry.name%>'s Page</h4>
+</div>
+  <div class="container">
+    <table class="table table-bordered table-hover">
+      <tbody class="item">
+          <tr>
+            <thead>
+              <tr>
+              <th>Name</th>
+              <th>Color</th>
+              <th>Sex</th>
+              <th>Kennel</th>
+              <th>Birthdate</th>
+              </tr>
+            </thead>
+            <tr>
+
+          <td>
+            <%=registry.name%></a>
+          </td>
+          <td>
+            <%=registry.color%></a>
+          </td>
+          <td>
+            <%=registry.sex%></a>
+          </td>
+          <td>
+            <%=registry.kennel%></a>
+          </td>
+          <td>
+            <%=registry.birthdate%></a>
+          </td>
+
+      </tbody>
     </table>
+    <form>
+
+        <button type="button"><a href="/registry">Back</a></button>
+        <a href="/registry/<%=registry.id%>/edit?_method=PUT">Edit </a>
 
   </body>
 </html>

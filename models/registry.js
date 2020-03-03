@@ -6,6 +6,7 @@ const registrySchema = new mongoose.Schema({
   color: { type: String, required: true },
   sex: {type: String},
   kennel: {type: String},
+  birthdate: {type: String},
 },
 {timestamp: true})
 

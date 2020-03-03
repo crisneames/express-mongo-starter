@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const router = express.Router();
+const methodOverride = require('method-override');
 const Registry = require('../models/registry.js')
 
 // Make custom middleware to check for session/logged in user
@@ -14,7 +15,9 @@ const isAuthenticated = (req, res, next) => {
 
 // New route is connected to create. Create has the functionalilty
 router.get('/new', (req, res)=>{
-    res.render('new.ejs')
+    res.render('new.ejs', {
+        currentUser: req.session.currentUser
+    })
 });
 
 // EDIT
@@ -22,45 +25,45 @@ router.get('/:id/edit', (req, res) => {
   Registry.findById(req.params.id, (error, foundRegistry) => {
     res.render('edit.ejs', {
       registry: foundRegistry,
+      currentUser: req.session.currentUser
 
     })
   })
 })
 
-// DELETE
-router.delete('/:id', (req, res) => {
-  registry.findByIdAndRemove(req.params.id, (err, deletedRegistry) => {
-    res.redirect('/registry')
-  })
-})
+
 
 // SHOW
 //longhand way
-router.get('/registry/:id', (req, res) => {
+router.get('/:id', (req, res) => {
   Registry.findById(req.params.id, (error, foundRegistry) => {
       res.render('show.ejs', {
         registry: foundRegistry,
+        currentUser: req.session.currentUser
       })
     })
   }
 )
 
-// UPDATE
-// router.put('/:id', (req, res) => {
-//   Registry.findByIdAndUpdate(
-//     req.params.id,
-//     req.body,
-//     { new: true },
-//     (error, updatedModel) => {
-//       res.redirect('/registry')
-//     }
-//   )
-// })
+//UPDATE
+router.put('/:id', (req, res) => {
+
+  Registry.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    { new: true },
+    (error, updatedRegistry) => {
+      res.redirect('/registry')
+      currentUser: req.session.currentUser
+    }
+  )
+})
 
 // CREATE
-router.post('/registry', (req, res) => {
+router.post('/', (req, res) => {
   Registry.create(req.body, (error, createdRegistry) => {
-    console.log(error);
+    // console.log(error);
+    // console.log(req.body);
     res.redirect('/registry')
   })
 })
@@ -70,8 +73,18 @@ router.get('/', (req, res) => {
   Registry.find({}, (error, allRegistry) => {
     res.render('index.ejs', {
       registry: allRegistry,
+      currentUser: req.session.currentUser
 
     })
+  })
+})
+
+// DELETE
+router.delete('/:id', (req, res) => {
+  console.log(req.body);
+  Registry.findByIdAndRemove(req.params.id, (err, deletedRegistry) => {
+    console.log(deletedRegistry);
+    res.redirect('/registry')
   })
 })
 

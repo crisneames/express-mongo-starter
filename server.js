@@ -9,8 +9,10 @@ const db = mongoose.connection;
 const bcrypt = require('bcrypt');
 const Registry = require('./models/registry.js');
 const registryController = require('./controllers/registry.js');
-app.use("/registry", registryController)
-
+const userController = require('./controllers/users_controller.js')
+require('dotenv').config()
+const session = require('express-session')
+const sessionsController = require('./controllers/sessions_controller.js')
 //___________________
 //Port
 //___________________
@@ -23,7 +25,7 @@ const PORT = process.env.PORT || 3000;
 // How to connect to the database either via heroku or locally
 const MONGODB_URI = process.env.MONGODB_URI || `mongodb://localhost/
  ohmycrud`;
-console.log('This is the connection string ' ,process.env.MONGODB_URI);
+// console.log('This is the connection string ' ,process.env.MONGODB_URI);
 // Connect to Mongo
 mongoose.connect(MONGODB_URI ,  { useNewUrlParser: true, useUnifiedTopology: true });
 
@@ -39,16 +41,26 @@ db.on('open' , ()=>{});
 //Middleware
 //___________________
 
-
+app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //use public folder for static assets
 app.use(express.static('public'));
-
+app.use(
+  session({
+    secret: process.env.SECRET, //a random string do not copy this value or your stuff will get hacked
+    resave: false, // default more info: https://www.npmjs.com/package/express-session#resave
+    saveUninitialized: false // default  more info: https://www.npmjs.com/package/express-session#resave
+  })
+)
 // populates req.body with parsed info from forms - if no data from forms will return an empty object {}
 app.use(express.urlencoded({ extended: false }));// extended: false - does not allow nested objects in query strings
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
+app.use('/registry', registryController);
+app.use('/users', userController)
 
+
+app.use('/sessions', sessionsController)
 //use method override
-app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
+
 
 
 //___________________
@@ -56,7 +68,7 @@ app.use(methodOverride('_method'));// allow POST, PUT and DELETE from a form
 //___________________
 //localhost:3000
 app.get('/' , (req, res) => {
-  res.send('Hello World!');
+  res.redirect('/registry');
 });
 
 //___________________

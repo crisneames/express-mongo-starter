@@ -7,13 +7,24 @@
     <title>Lacy Dog Directory</title>
   </head>
   <body>
-    <h1>Edit Page</h1>
+    <header>
+      <%- include ('./partials/head.ejs') %>
+    </header>
+    <hr>
+    <h4>Edit Page</h4>
             <form action="/registry/<%=registry.id%>?_method=PUT" method="POST">
         		<!--  NOTE: the form is pre-populated with values for the server-->
-        		Name: <input type="text" name="name" value="<%=registry.name%>"/><br/>
-        		Color: <input type="text" name="color" value="<%=registry.color%>"/><br/>
+            <div class="form-group">
+        		Name: <input type="text" class="form-control" name="name" value="<%=registry.name%>"/><br/>
+            <div>
+        		Color: <input type="text" name="color" class="form-control" value="<%=registry.color%>"/><br/>
+            Sex: <input type="text" name="sex" class="form-control" value="<%=registry.sex%>"/><br/>
+            Kennel: <input type="text" name="kennel" class="form-control" value="<%=registry.kennel%>"/><br/>
+            Birthdate: <input type="date" name="birthdate" class="form-control" value="<%=registry.birthdate%>"/><br/>
         		<br/>
-                <input type="submit" name="" value="Submit Changes"/>
+            <button type="submit" class="btn btn-primary">Submit Changes</button>
+
+
             </form>
 
   </body>

@@ -7,16 +7,35 @@
     <title>Lacy Dog Directory</title>
   </head>
   <body>
-      <h1>New Entry</h1>
-      <div>
-    <form class="form-group" action="/registry" method="POST">
-            Name: <input type="text" name="name" /><br/>
-            Color: <input type="text" name="color" /><br/>
-            Sex: <input type="text" name="sex" /><br/>
-            Kennel: <input type="text" name="kennel" /><br/>
-            Birthdate: <input type="date" name="birthdate" /><br/>
-            <input type="submit" name="" value="Create Entry"/>
-        </form>
-        </div>
-  </body>
+    <%- include ('./partials/head.ejs') %>
+    <hr>
+      <h4>New Entry</h4>
+
+
+
+
+  <form action="/registry" method="POST">
+  <div class="form-group">
+    <label for="name">Name: </label>
+    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Dog's Name">
+  </div>
+  <div class="form-group">
+    <label for="color">Color: </label>
+    <input type="text" class="form-control" id="color" name="color" placeholder="Dog's Color">
+  </div>
+  <div class="form-group">
+    <label for="sex">Sex: </label>
+    <input type="text" class="form-control" id="sex" name="sex" placeholder="Sex">
+  </div>
+  <div class="form-group">
+    <label for="kennel">Kennel Name: </label>
+    <input type="text" class="form-control" id="kennel" name="kennel" placeholder="Kennel Name">
+  </div>
+  <div class="form-group">
+    <label for="birthdate">Birthdate: </label>
+    <input type="date" class="form-control" id="birthdate" name="birrthdate" placeholder="Birthdate">
+  </div>
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
 </html>

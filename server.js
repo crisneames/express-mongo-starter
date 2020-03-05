@@ -56,12 +56,7 @@ app.use(express.urlencoded({ extended: false }));// extended: false - does not a
 app.use(express.json());// returns middleware that only parses JSON - may or may not need it depending on your project
 app.use('/registry', registryController);
 app.use('/users', userController)
-
-
 app.use('/sessions', sessionsController)
-//use method override
-
-
 
 //___________________
 // Routes

@@ -31,10 +31,8 @@ router.get('/:id/edit', (req, res) => {
   })
 })
 
-
-
 // SHOW
-//longhand way
+//
 router.get('/:id', (req, res) => {
   Registry.findById(req.params.id, (error, foundRegistry) => {
       res.render('show.ejs', {
@@ -47,7 +45,6 @@ router.get('/:id', (req, res) => {
 
 //UPDATE
 router.put('/:id', (req, res) => {
-
   Registry.findByIdAndUpdate(
     req.params.id,
     req.body,

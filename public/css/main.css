@@ -14,8 +14,10 @@ ul {
   list-style-type: none;
   display: flex;
   justify-content: space-between;
+  margin: 25px;
 }
 
 li {
   align-self: flex-end;
+  margin: 25px;
 }

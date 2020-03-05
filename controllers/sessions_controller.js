@@ -9,18 +9,7 @@ sessions.get('/new', (req, res) => {
 
 // on sessions form submit (log in)
 sessions.post('/', (req, res) => {
-  // username is found and password matches
-  // successful log in
-
-  // username is not found - who cares about password if you don't have a username that is found?
-  // unsuccessful login
-
-  // username found but password doesn't match
-  // unsuccessful login
-
-  // some weird thing happened???????
-
-  // Step 1 Look for the username
+    // Step 1 Look for the username
   User.findOne({ username: req.body.username }, (err, foundUser) => {
     // Database error
     if (err) {
